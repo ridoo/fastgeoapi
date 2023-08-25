@@ -4,6 +4,15 @@ services:
     build:
       context: ../../
       dockerfile: ./Dockerfile
+    environment:
+      - PYGEOAPI_CONFIG=../../pygeoapi-config.yml
+      - PYGEOAPI_OPENAPI=../../pygeoapi-openapi.yml
+      - DEV_FASTGEOAPI_CONTEXT=/api
+
+      - DEV_OIDC_WELL_KNOWN_ENDPOINT=http://172.17.0.1:8282/realms/pygeoapi/.well-known/openid-configuration
+
+      - DEV_OPA_ENABLED=true
+      - DEV_OPA_URL=http://opa:8181
     ports:
       - "5000:5000"
 
